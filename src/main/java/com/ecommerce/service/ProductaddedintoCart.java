@@ -2,6 +2,8 @@ package com.ecommerce.service;
 import java.util.HashMap;
 
 import com.ecommerce.bo.ProductCountDetails;
+import com.ecommerce.promotion.IPromotionalPrice;
+import com.ecommerce.promotion.impl.PromotionalPriceOf3A;
 
 import static com.ecommerce.bo.ProductIndividualPriceDetails.*;
 
@@ -32,6 +34,10 @@ public class ProductaddedintoCart {
         }
         return sum;
 	}
+
+	 public long calculatePriceWithPromotion(IPromotionalPrice promotion, HashMap<String, Integer> checkoutProductList) {
+	        return promotion.promotionalPrice(checkoutProductList);
+	    }
 
 	
 
