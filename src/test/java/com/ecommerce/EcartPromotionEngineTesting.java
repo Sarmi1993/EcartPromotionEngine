@@ -89,4 +89,50 @@ public class EcartPromotionEngineTesting {
        			
        Assert.assertEquals(130, price);
    }
+   @Test
+   public void ScenarioForCandD() {
+       ProductaddedintoCart productaddedintoCart = new ProductaddedintoCart();
+       
+       productaddedintoCart.addproduct("C", 1);
+       productaddedintoCart.addproduct("D", 1);
+       
+       
+       HashMap<String, Integer> checkoutProductList = productaddedintoCart.getCartDetails().getCheckoutProductList();
+       
+       price = productaddedintoCart.calculatePriceWithPromotion(new PromotionalPriceOfCandD(), checkoutProductList);
+       			
+       Assert.assertEquals(30, price);
+   }
+   
+   @Test
+   public void scenarioBTest() {
+       ProductaddedintoCart productaddedintoCart = new ProductaddedintoCart();
+       productaddedintoCart.addproduct("A", 5);
+       productaddedintoCart.addproduct("B", 5);
+       productaddedintoCart.addproduct("C", 1);
+       
+       HashMap<String, Integer> checkoutProductList = productaddedintoCart.getCartDetails().getCheckoutProductList();
+       
+       price = productaddedintoCart.calculatePriceWithPromotion(new PromotionalPriceOf3A(), checkoutProductList)
+       			+ productaddedintoCart.calculatePriceWithPromotion(new PromotionalPriceOf2B(), checkoutProductList)
+       			+ productaddedintoCart.calculatePriceWithPromotion(new PromotionalPriceOfCandD(), checkoutProductList);
+       Assert.assertEquals(370, price);
+   }
+   
+   @Test
+   public void scenarioCTest() {
+       ProductaddedintoCart checkoutHandler = new ProductaddedintoCart();
+       checkoutHandler.addproduct("A", 3);
+       checkoutHandler.addproduct("B", 5);
+       checkoutHandler.addproduct("C", 1);
+       checkoutHandler.addproduct("D", 1);
+       
+       HashMap<String, Integer> checkoutProductList = checkoutHandler.getCartDetails().getCheckoutProductList();
+       
+       price = checkoutHandler.calculatePriceWithPromotion(new PromotionalPriceOf3A(), checkoutProductList)
+       			+ checkoutHandler.calculatePriceWithPromotion(new PromotionalPriceOf2B(), checkoutProductList)
+       			+ checkoutHandler.calculatePriceWithPromotion(new PromotionalPriceOfCandD(), checkoutProductList);
+       Assert.assertEquals(280, price);
+   }
+   
 }
