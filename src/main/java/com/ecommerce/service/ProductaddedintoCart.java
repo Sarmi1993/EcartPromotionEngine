@@ -22,9 +22,15 @@ public class ProductaddedintoCart {
 	        return this.cart;
 	    }
 
-	public Object calculateFinalPrice() {
-		
-		return null;
+	public int calculateFinalPrice() {
+		int sum = 0;
+        HashMap<String, Integer> checkoutProductList = cart.getCheckoutProductList();
+        for (String skuId : checkoutProductList.keySet()) {
+            int price = individualpriceList.get(skuId);
+            int quantity = checkoutProductList.get(skuId);
+            sum = sum + price * quantity;
+        }
+        return sum;
 	}
 
 	
