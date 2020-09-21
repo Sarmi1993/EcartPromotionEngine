@@ -62,4 +62,18 @@ public class EcartPromotionEngineTesting {
        			+ productaddedintoCart.calculatePriceWithPromotion(new PromotionalPriceOfCandD(), checkoutProductList);
        Assert.assertEquals(100, price);
    }
+   
+   @Test
+   public void ScenarioFor2B() {
+       ProductaddedintoCart productaddedintoCart = new ProductaddedintoCart();
+       
+       productaddedintoCart.addproduct("B", 2);
+       
+       
+       HashMap<String, Integer> checkoutProductList = productaddedintoCart.getCartDetails().getCheckoutProductList();
+       
+       price = productaddedintoCart.calculatePriceWithPromotion(new PromotionalPriceOf2B(), checkoutProductList);
+       			
+       Assert.assertEquals(45, price);
+   }
 }
